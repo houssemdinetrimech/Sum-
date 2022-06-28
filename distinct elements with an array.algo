@@ -1,0 +1,45 @@
+ALGORITHM array_distinct_sum
+VAR
+    arr1 : ARRAY_OF INTEGER[];
+    arr2 : ARRAY_OF INTEGER[];
+    sum, i ,j : INTEGER :=0;    
+    distinct : BOOLEAN; 
+BEGIN
+
+   FOR i FROM 0 TO arr1.length-1 DO
+       Read(arr1[i]);
+   END_FOR 
+
+   FOR j FROM 0 TO arr2.length-1 DO
+       Read(arr2[j]);
+   
+   
+   FOR i FROM 0 TO arr1.length-1  DO
+        distinct := false;
+        
+      FOR j FROM 0 TO arr2.length-1 STEP 1  DO
+       IF (arr1[i] = arr2[j]) THEN
+           distinct := true;
+           break;
+       END_IF
+     END_FOR
+
+      IF (distinct=false) THEN
+            sum:=sum+arr1[i]
+        END_IF
+   END_FOR
+
+   FOR j FROM 0 TO arr2.length-1 STEP 1  DO
+     distinct := false; 
+      FOR i FROM 0 TO arr1.length-1 STEP 1  DO
+       IF (arr2[j] = arr1[i]) THEN
+           distinct := true;
+           break;
+       END_IF
+     END_FOR
+     IF (distinct=false) THEN
+            sum:=sum+arr2[i]
+        END_IF
+   END_FOR
+   write("the sum of the distinct elements is", sum)
+END
